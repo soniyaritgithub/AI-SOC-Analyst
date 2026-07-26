@@ -5,6 +5,8 @@ import { env } from "../lib/env";
 import type {
   LoginCredentials,
   LoginResponse,
+  RegisterCredentials,
+  RegisterResponse,
   User,
 } from "../types/auth";
 
@@ -22,6 +24,18 @@ const authClient = axios.create({
 });
 
 export const authService = {
+    async register(
+    credentials: RegisterCredentials,
+  ): Promise<RegisterResponse> {
+    const response =
+      await authClient.post<RegisterResponse>(
+        API_ENDPOINTS.AUTH.REGISTER,
+        credentials,
+      );
+
+    return response.data;
+  },
+
   async login(
     credentials: LoginCredentials,
   ): Promise<LoginResponse> {

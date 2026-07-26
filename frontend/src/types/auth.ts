@@ -8,6 +8,15 @@ export interface LoginCredentials {
   password: string;
 }
 
+export interface RegisterCredentials {
+  email: string;
+  full_name: string;
+  department: string;
+  phone_number: string;
+  password: string;
+  confirm_password: string;
+}
+
 export interface AuthTokens {
   access: string;
   refresh: string;
@@ -20,6 +29,8 @@ export interface User {
   first_name?: string;
   last_name?: string;
   role?: UserRole;
+  department?: string;
+  phone_number?: string;
   is_active?: boolean;
 }
 
@@ -27,4 +38,9 @@ export interface LoginResponse {
   access: string;
   refresh: string;
   user?: User;
+}
+
+export interface RegisterResponse {
+  message: string;
+  user: User;
 }

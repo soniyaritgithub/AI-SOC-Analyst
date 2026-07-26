@@ -1,9 +1,8 @@
-from accounts.api.permissions import IsAdminOrManager
+from accounts.api.permissions import IsSOCMember
 from drf_spectacular.utils import extend_schema
 from incidents.api.serializers import IncidentDetailSerializer
 from incidents.selectors import IncidentSelector
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -18,8 +17,7 @@ class IncidentDetailAPIView(APIView):
     """
 
     permission_classes = [
-        IsAuthenticated,
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     def get(self, request, pk):

@@ -4507,3 +4507,83 @@ button {
     transform: scale(1.25);
   }
 }
+/* ==========================================================
+   Authentication - Register
+   ========================================================== */
+
+.register-page {
+  min-height: 100dvh;
+}
+
+.register-card {
+  width: min(100%, 620px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.register-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.auth-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.auth-switch button {
+  appearance: none;
+  border: 0;
+  padding: 4px;
+  background: transparent;
+  color: #67e8f9;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.auth-switch button:hover {
+  color: #a5f3fc;
+}
+
+.auth-switch button:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 767px) {
+  .register-card {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .register-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-switch {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-switch button {
+    transition: none;
+  }
+}

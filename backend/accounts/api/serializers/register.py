@@ -18,7 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
             "full_name",
             "department",
             "phone_number",
-            "role",
             "password",
             "confirm_password",
         )
@@ -26,27 +25,46 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "password": {
                 "write_only": True,
-            }
+            },
+            "department": {
+                "required": False,
+                "allow_blank": True,
+            },
+            "phone_number": {
+                "required": False,
+                "allow_blank": True,
+            },
         }
 
     def validate_email(self, value):
-        if User.objects.filter(email=value).exists():
+        value = value.strip().lower()
+
+        if User.objects.filter(
+            email__iexact=value,
+        ).exists():
             raise serializers.ValidationError(
-                "Email already exists."
+                "Email already exists.",
             )
 
         return value
 
     def validate(self, attrs):
-        if attrs["password"] != attrs["confirm_password"]:
+        if (
+            attrs["password"]
+            != attrs["confirm_password"]
+        ):
             raise serializers.ValidationError(
                 {
                     "confirm_password":
-                        "Passwords do not match."
-                }
+                        "Passwords do not match.",
+                },
             )
 
         return attrs
 
     def create(self, validated_data):
-      return AuthService.register_user(validated_data)
+        validated_data["role"] = "SOC_ANALYST"
+
+        return AuthService.register_user(
+            validated_data,
+        )

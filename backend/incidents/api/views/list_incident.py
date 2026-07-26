@@ -1,4 +1,4 @@
-from accounts.api.permissions import IsAdminOrManager
+from accounts.api.permissions import IsSOCMember
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from incidents.api.filters import IncidentFilter
@@ -7,7 +7,6 @@ from incidents.api.serializers import IncidentListSerializer
 from incidents.selectors import IncidentSelector
 from rest_framework import filters
 from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAuthenticated
 
 
 @extend_schema(tags=["Incidents"])
@@ -19,8 +18,7 @@ class IncidentListAPIView(ListAPIView):
     serializer_class = IncidentListSerializer
 
     permission_classes = [
-        IsAuthenticated,
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     pagination_class = IncidentPagination

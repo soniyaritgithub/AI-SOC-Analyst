@@ -1,11 +1,11 @@
 export const API_ENDPOINTS = {
   AUTH: {
-    LOGIN: "/api/accounts/login/",
-    LOGOUT: "/api/accounts/logout/",
-    REFRESH: "/api/accounts/token/refresh/",
-    ME: "/api/accounts/me/",
-  },
-
+  REGISTER: "/api/accounts/register/",
+  LOGIN: "/api/accounts/login/",
+  LOGOUT: "/api/accounts/logout/",
+  REFRESH: "/api/accounts/refresh/",
+  ME: "/api/accounts/me/",
+},
   DASHBOARD: {
     ROOT: "/api/dashboard/",
   },

@@ -1,11 +1,10 @@
-from accounts.api.permissions import IsAdminOrManager
+from accounts.api.permissions import IsSOCMember
 from drf_spectacular.utils import extend_schema
 from incidents.api.serializers import (ChangeIncidentStatusSerializer,
                                        IncidentDetailSerializer)
 from incidents.selectors import IncidentSelector
 from incidents.services import IncidentService
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -21,8 +20,7 @@ class ChangeIncidentStatusAPIView(APIView):
     """
 
     permission_classes = [
-        IsAuthenticated,
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     def patch(self, request, pk):
@@ -40,16 +38,21 @@ class ChangeIncidentStatusAPIView(APIView):
             data=request.data
         )
 
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(
+            raise_exception=True
+        )
 
         IncidentService.change_status(
             incident=incident,
-            status=serializer.validated_data["status"],
+            status=serializer.validated_data[
+                "status"
+            ],
         )
 
         return Response(
             {
-                "message": "Incident status updated successfully.",
+                "message":
+                    "Incident status updated successfully.",
                 "data": IncidentDetailSerializer(
                     incident
                 ).data,

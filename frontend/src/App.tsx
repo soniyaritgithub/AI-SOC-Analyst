@@ -59,6 +59,9 @@ const NotFoundPage = lazy(
   () => import("./pages/NotFoundPage"),
 );
 
+const RegisterPage = lazy(
+  () => import("./pages/RegisterPage"),
+);
 interface ProtectedSocketRouteProps {
   children: ReactNode;
 }
@@ -99,7 +102,14 @@ export default function App() {
             </PublicRoute>
           }
         />
-
+<Route
+  path="/register"
+  element={
+    <PublicRoute>
+      <RegisterPage />
+    </PublicRoute>
+  }
+/>
         {/* Dashboard */}
         <Route
           path="/dashboard"

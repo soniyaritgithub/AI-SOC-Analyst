@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from accounts.api.permissions import IsAdminOrManager
+from accounts.api.permissions import IsSOCMember
 from django.http import HttpResponse
 from drf_spectacular.utils import (OpenApiExample, OpenApiParameter,
                                    OpenApiResponse, extend_schema)
@@ -44,7 +44,7 @@ from rest_framework.views import APIView
 )
 class IncidentStatisticsAPIView(generics.GenericAPIView):
     serializer_class = IncidentStatisticsSerializer
-    permission_classes = [IsAdminOrManager]
+    permission_classes = [IsSOCMember]
 
     def get(self, request):
         statistics = IncidentSelector.get_statistics()
@@ -99,7 +99,7 @@ class IncidentSeverityAPIView(generics.GenericAPIView):
     serializer_class = IncidentSeveritySerializer
 
     permission_classes = [
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     def get(self, request):
@@ -158,7 +158,7 @@ class IncidentStatusAPIView(generics.GenericAPIView):
     serializer_class = IncidentStatusSerializer
 
     permission_classes = [
-        IsAdminOrManager,
+       IsSOCMember,
     ]
 
     def get(self, request):
@@ -213,7 +213,7 @@ class IncidentAnalystAPIView(generics.GenericAPIView):
     serializer_class = IncidentAnalystSerializer
 
     permission_classes = [
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     def get(self, request):
@@ -272,7 +272,7 @@ class IncidentTrendAPIView(generics.GenericAPIView):
     serializer_class = IncidentTrendSerializer
 
     permission_classes = [
-        IsAdminOrManager,
+       IsSOCMember,
     ]
 
     def get(self, request):
@@ -405,7 +405,7 @@ class IncidentDashboardAPIView(generics.GenericAPIView):
     serializer_class = IncidentDashboardSerializer
 
     permission_classes = [
-        IsAdminOrManager,
+        IsSOCMember,
     ]
 
     def get(self, request):

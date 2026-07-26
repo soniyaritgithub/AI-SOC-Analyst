@@ -443,6 +443,20 @@ export default function LoginPage() {
                 "Sign in to SOC"
               )}
             </button>
+            <div className="auth-switch">
+  <span>
+    New to AI SOC Analyst?
+  </span>
+
+  <button
+    type="button"
+    onClick={() =>
+      navigate("/register")
+    }
+  >
+    Create account
+  </button>
+</div>
           </form>
 
           <div className="login-card__footer">
