@@ -1,10 +1,21 @@
 from django.http import FileResponse
+from drf_spectacular.utils import OpenApiResponse, extend_schema
 from reports.services.excel_report_service import ExcelReportService
 from reports.services.pdf_report_service import PDFReportService
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 
+@extend_schema(
+    summary="Download Incident PDF Report",
+    description="Downloads the SOC incident report as a PDF file.",
+    responses={
+        (200, "application/pdf"): OpenApiResponse(
+            response=bytes,
+            description="SOC incident PDF report.",
+        ),
+    },
+)
 class IncidentPDFReportAPIView(APIView):
     """
     Download incident report as PDF.
@@ -27,6 +38,20 @@ class IncidentPDFReportAPIView(APIView):
         )
 
 
+@extend_schema(
+    summary="Download Incident Excel Report",
+    description="Downloads the SOC incident report as an Excel file.",
+    responses={
+        (
+            200,
+            "application/vnd.openxmlformats-officedocument."
+            "spreadsheetml.sheet",
+        ): OpenApiResponse(
+            response=bytes,
+            description="SOC incident Excel report.",
+        ),
+    },
+)
 class IncidentExcelReportAPIView(APIView):
     """
     Download incident report as Excel.

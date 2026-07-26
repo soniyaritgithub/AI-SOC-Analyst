@@ -452,6 +452,43 @@ class IncidentDashboardAPIView(generics.GenericAPIView):
         return Response(serializer.data)
 
 
+@extend_schema(
+    summary="Export SOC Dashboard CSV",
+    description="Exports filtered SOC dashboard incident data as a CSV file.",
+    parameters=[
+        OpenApiParameter(
+            name="severity",
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name="status",
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name="assigned_to",
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name="start_date",
+            required=False,
+            type=str,
+        ),
+        OpenApiParameter(
+            name="end_date",
+            required=False,
+            type=str,
+        ),
+    ],
+    responses={
+        (200, "text/csv"): OpenApiResponse(
+            response=bytes,
+            description="Dashboard CSV export.",
+        ),
+    },
+)
 class DashboardExportAPIView(APIView):
     permission_classes = [
         IsAuthenticated,

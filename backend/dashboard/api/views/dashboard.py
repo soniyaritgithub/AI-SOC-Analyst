@@ -1,7 +1,8 @@
 from accounts.api.permissions import IsAdminOrManager
 from dashboard.selectors import DashboardSelector
-from drf_spectacular.utils import extend_schema
-from rest_framework import status
+from drf_spectacular.utils import (OpenApiResponse, extend_schema,
+                                   inline_serializer)
+from rest_framework import serializers, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -9,6 +10,18 @@ from rest_framework.views import APIView
 
 @extend_schema(
     tags=["Dashboard"],
+    responses={
+        200: OpenApiResponse(
+            response=inline_serializer(
+                name="DashboardResponse",
+                fields={
+                    "role": serializers.CharField(),
+                    "dashboard": serializers.DictField(),
+                },
+            ),
+            description="Dashboard statistics retrieved successfully.",
+        ),
+    },
 )
 class DashboardAPIView(APIView):
     """
