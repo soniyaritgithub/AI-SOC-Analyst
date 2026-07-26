@@ -14,12 +14,20 @@ import { tokenService } from "../services/token.service";
 import type {
   LoginCredentials,
   User,
+  UserRole,
 } from "../types/auth";
 
 interface AuthContextValue {
   user: User | null;
+
   isAuthenticated: boolean;
   isLoading: boolean;
+
+  role: UserRole | null;
+
+  isAdmin: boolean;
+  isManager: boolean;
+  isSOCAnalyst: boolean;
 
   login: (
     credentials: LoginCredentials,
@@ -28,6 +36,10 @@ interface AuthContextValue {
   logout: () => Promise<void>;
 
   refreshUser: () => Promise<void>;
+
+  hasRole: (
+    roles: UserRole[],
+  ) => boolean;
 }
 
 const AuthContext =
@@ -110,11 +122,19 @@ export function AuthProvider({
       const response =
         await authService.login(credentials);
 
+      /*
+       * If Login API already returns the
+       * authenticated user, use it.
+       */
       if (response.user) {
         setUser(response.user);
         return;
       }
 
+      /*
+       * Otherwise fetch the authenticated
+       * profile using the newly stored JWT.
+       */
       const currentUser =
         await authService.getCurrentUser();
 
@@ -135,6 +155,31 @@ export function AuthProvider({
     [],
   );
 
+  const role =
+    user?.role ?? null;
+
+  const isAdmin =
+    role === "ADMIN";
+
+  const isManager =
+    role === "MANAGER";
+
+  const isSOCAnalyst =
+    role === "SOC_ANALYST";
+
+  const hasRole = useCallback(
+    (
+      roles: UserRole[],
+    ): boolean => {
+      if (!user) {
+        return false;
+      }
+
+      return roles.includes(user.role);
+    },
+    [user],
+  );
+
   const value = useMemo(
     () => ({
       user,
@@ -147,16 +192,27 @@ export function AuthProvider({
 
       isLoading,
 
+      role,
+      isAdmin,
+      isManager,
+      isSOCAnalyst,
+
       login,
       logout,
       refreshUser,
+      hasRole,
     }),
     [
       user,
       isLoading,
+      role,
+      isAdmin,
+      isManager,
+      isSOCAnalyst,
       login,
       logout,
       refreshUser,
+      hasRole,
     ],
   );
 

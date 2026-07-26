@@ -342,12 +342,17 @@ SIMPLE_JWT = {
 }
 
 # ==========================================================
-# CORS
+# CORS / CSRF
 # ==========================================================
 
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,http://127.0.0.1:5173",
+    default=(
+        "http://localhost:5173,"
+        "http://127.0.0.1:5173,"
+        "http://localhost:5174,"
+        "http://127.0.0.1:5174"
+    ),
     cast=lambda value: [
         origin.strip()
         for origin in value.split(",")
@@ -357,7 +362,12 @@ CORS_ALLOWED_ORIGINS = config(
 
 CSRF_TRUSTED_ORIGINS = config(
     "CSRF_TRUSTED_ORIGINS",
-    default="http://localhost:5173,http://127.0.0.1:5173",
+    default=(
+        "http://localhost:5173,"
+        "http://127.0.0.1:5173,"
+        "http://localhost:5174,"
+        "http://127.0.0.1:5174"
+    ),
     cast=lambda value: [
         origin.strip()
         for origin in value.split(",")

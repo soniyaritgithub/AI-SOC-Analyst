@@ -1,7 +1,7 @@
 export type UserRole =
   | "ADMIN"
-  | "SOC_ANALYST"
-  | "MANAGER";
+  | "MANAGER"
+  | "SOC_ANALYST";
 
 export interface LoginCredentials {
   email: string;
@@ -28,10 +28,18 @@ export interface User {
   full_name?: string;
   first_name?: string;
   last_name?: string;
-  role?: UserRole;
+
+  /*
+   * Every authenticated user in the backend
+   * always has a role because User.role has
+   * a database default.
+   */
+  role: UserRole;
+
   department?: string;
   phone_number?: string;
   is_active?: boolean;
+  is_staff?: boolean;
 }
 
 export interface LoginResponse {

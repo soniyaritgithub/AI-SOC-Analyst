@@ -10,21 +10,21 @@ import {
   useAuth,
 } from "../contexts/AuthContext";
 
+import RouteLoader from "../components/ui/RouteLoader";
+
 import type {
   UserRole,
 } from "../types/auth";
 
-import RouteLoader from "../components/ui/RouteLoader";
-
-interface RoleProtectedRouteProps {
+interface RoleRouteProps {
   children: ReactNode;
   allowedRoles: UserRole[];
 }
 
-export default function RoleProtectedRoute({
+export default function RoleRoute({
   children,
   allowedRoles,
-}: RoleProtectedRouteProps) {
+}: RoleRouteProps) {
   const {
     user,
     isAuthenticated,
@@ -35,7 +35,7 @@ export default function RoleProtectedRoute({
     return <RouteLoader />;
   }
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !user) {
     return (
       <Navigate
         to="/login"
@@ -45,7 +45,6 @@ export default function RoleProtectedRoute({
   }
 
   if (
-    !user?.role ||
     !allowedRoles.includes(user.role)
   ) {
     return (

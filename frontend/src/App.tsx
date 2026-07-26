@@ -16,6 +16,12 @@ import RouteLoader from "./components/ui/RouteLoader";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 
+import RoleRoute from "./routes/RoleRoute";
+
+import type {
+  UserRole,
+} from "./types/auth";
+
 /*
  * Route-level code splitting.
  *
@@ -65,7 +71,27 @@ const RegisterPage = lazy(
 interface ProtectedSocketRouteProps {
   children: ReactNode;
 }
+interface ProtectedRoleSocketRouteProps {
+  children: ReactNode;
+  allowedRoles: UserRole[];
+}
 
+function ProtectedRoleSocketRoute({
+  children,
+  allowedRoles,
+}: ProtectedRoleSocketRouteProps) {
+  return (
+    <ProtectedRoute>
+      <RoleRoute
+        allowedRoles={allowedRoles}
+      >
+        <DashboardSocketProvider>
+          {children}
+        </DashboardSocketProvider>
+      </RoleRoute>
+    </ProtectedRoute>
+  );
+}
 function ProtectedSocketRoute({
   children,
 }: ProtectedSocketRouteProps) {
