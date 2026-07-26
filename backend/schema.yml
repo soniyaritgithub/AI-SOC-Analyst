@@ -1,0 +1,1021 @@
+openapi: 3.0.3
+info:
+  title: AI SOC Analyst API
+  version: 1.0.0
+  description: Enterprise Security Monitoring API
+paths:
+  /api/accounts/change-password/:
+    post:
+      operationId: accounts_change_password_create
+      description: Change password for the authenticated user.
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: ''
+  /api/accounts/forgot-password/:
+    post:
+      operationId: accounts_forgot_password_create
+      description: Send password reset email.
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: ''
+  /api/accounts/login/:
+    post:
+      operationId: accounts_login_create
+      description: Login user and return JWT tokens.
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Login'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/accounts/logout/:
+    post:
+      operationId: accounts_logout_create
+      description: Logout user and blacklist refresh token.
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Logout'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Logout'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Logout'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/accounts/me/:
+    get:
+      operationId: accounts_me_retrieve
+      description: Return authenticated user's profile.
+      tags:
+      - accounts
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+  /api/accounts/refresh/:
+    post:
+      operationId: accounts_refresh_create
+      description: Refresh JWT access token.
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/accounts/register/:
+    post:
+      operationId: accounts_register_create
+      description: Register a new user.
+      tags:
+      - accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+  /api/accounts/reset-password/:
+    post:
+      operationId: accounts_reset_password_create
+      description: Reset password using UID and token.
+      tags:
+      - Accounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+          description: ''
+  /api/audit-logs/:
+    get:
+      operationId: audit_logs_list
+      description: API for listing audit logs.
+      parameters:
+      - in: query
+        name: action
+        schema:
+          type: string
+          enum:
+          - ASSIGNED
+          - CREATED
+          - DELETED
+          - STATUS_CHANGED
+          - UPDATED
+        description: |-
+          * `CREATED` - Created
+          * `UPDATED` - Updated
+          * `ASSIGNED` - Assigned
+          * `STATUS_CHANGED` - Status Changed
+          * `DELETED` - Deleted
+      - in: query
+        name: created_after
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: created_before
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: incident
+        schema:
+          type: string
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: user
+        schema:
+          type: string
+          format: uuid
+      tags:
+      - audit-logs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAuditLogList'
+          description: ''
+  /api/audit-logs/{id}/:
+    get:
+      operationId: audit_logs_retrieve
+      description: API for retrieving a single audit log.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - audit-logs
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+          description: ''
+  /api/dashboard/:
+    get:
+      operationId: dashboard_retrieve
+      description: Dashboard statistics API.
+      tags:
+      - Dashboard
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/incidents/:
+    get:
+      operationId: incidents_list
+      description: Enterprise Incident List API.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: severity
+        schema:
+          type: string
+          enum:
+          - CRITICAL
+          - HIGH
+          - LOW
+          - MEDIUM
+        description: |-
+          * `LOW` - Low
+          * `MEDIUM` - Medium
+          * `HIGH` - High
+          * `CRITICAL` - Critical
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - CLOSED
+          - IN_PROGRESS
+          - OPEN
+          - RESOLVED
+        description: |-
+          * `OPEN` - Open
+          * `IN_PROGRESS` - In Progress
+          * `RESOLVED` - Resolved
+          * `CLOSED` - Closed
+      tags:
+      - Incidents
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedIncidentListList'
+          description: ''
+  /api/incidents/{id}/:
+    get:
+      operationId: incidents_retrieve
+      description: Retrieve Incident Details.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetail'
+          description: ''
+  /api/incidents/{id}/assign/:
+    patch:
+      operationId: incidents_assign_partial_update
+      description: Assign an incident to a SOC Analyst.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignIncident'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignIncident'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAssignIncident'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetail'
+          description: ''
+  /api/incidents/{id}/delete/:
+    delete:
+      operationId: incidents_delete_destroy
+      description: Delete an incident.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/incidents/{id}/status/:
+    patch:
+      operationId: incidents_status_partial_update
+      description: Change Incident Status.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChangeIncidentStatus'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedChangeIncidentStatus'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedChangeIncidentStatus'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetail'
+          description: ''
+  /api/incidents/{id}/update/:
+    put:
+      operationId: incidents_update_update
+      description: Update an existing incident.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIncident'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateIncident'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateIncident'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetail'
+          description: ''
+    patch:
+      operationId: incidents_update_partial_update
+      description: Update an existing incident.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Incidents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateIncident'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateIncident'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateIncident'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetail'
+          description: ''
+  /api/incidents/create/:
+    post:
+      operationId: incidents_create_create
+      description: Create a new Incident.
+      tags:
+      - Incidents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIncident'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateIncident'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateIncident'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIncident'
+          description: ''
+components:
+  schemas:
+    ActionEnum:
+      enum:
+      - CREATED
+      - UPDATED
+      - ASSIGNED
+      - STATUS_CHANGED
+      - DELETED
+      type: string
+      description: |-
+        * `CREATED` - Created
+        * `UPDATED` - Updated
+        * `ASSIGNED` - Assigned
+        * `STATUS_CHANGED` - Status Changed
+        * `DELETED` - Deleted
+    AuditLog:
+      type: object
+      description: Serializer for Audit Logs.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        user:
+          type: string
+          readOnly: true
+        incident:
+          type: string
+          readOnly: true
+        action:
+          $ref: '#/components/schemas/ActionEnum'
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - action
+      - created_at
+      - description
+      - id
+      - incident
+      - user
+    ChangePassword:
+      type: object
+      description: Serializer for changing the authenticated user's password.
+      properties:
+        current_password:
+          type: string
+          writeOnly: true
+        new_password:
+          type: string
+          writeOnly: true
+        confirm_password:
+          type: string
+          writeOnly: true
+      required:
+      - confirm_password
+      - current_password
+      - new_password
+    CreateIncident:
+      type: object
+      description: Serializer for creating incidents.
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        assigned_to:
+          type: string
+          format: uuid
+          nullable: true
+      required:
+      - description
+      - title
+    ForgotPassword:
+      type: object
+      description: Serializer for requesting a password reset email.
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
+    IncidentDetail:
+      type: object
+      description: Serializer for incident details.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        assigned_to:
+          type: string
+          readOnly: true
+        created_by:
+          type: string
+          readOnly: true
+        incident_id:
+          type: string
+          maxLength: 20
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - assigned_to
+      - created_at
+      - created_by
+      - description
+      - id
+      - title
+      - updated_at
+    IncidentList:
+      type: object
+      description: Serializer for listing incidents.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        incident_id:
+          type: string
+          maxLength: 20
+        title:
+          type: string
+          maxLength: 255
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        assigned_to:
+          type: string
+          readOnly: true
+        created_by:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - assigned_to
+      - created_at
+      - created_by
+      - id
+      - title
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+    Logout:
+      type: object
+      properties:
+        refresh:
+          type: string
+      required:
+      - refresh
+    PaginatedAuditLogList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditLog'
+    PaginatedIncidentListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncidentList'
+    PatchedAssignIncident:
+      type: object
+      description: Serializer for assigning incidents.
+      properties:
+        assigned_to:
+          type: string
+          format: uuid
+    PatchedChangeIncidentStatus:
+      type: object
+      description: Serializer for changing incident status.
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+    PatchedUpdateIncident:
+      type: object
+      description: Serializer for updating incidents.
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        assigned_to:
+          type: string
+          format: uuid
+          nullable: true
+    Profile:
+      type: object
+      description: Serializer for authenticated user profile.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        email:
+          type: string
+          format: email
+          readOnly: true
+        full_name:
+          type: string
+          readOnly: true
+        department:
+          type: string
+          readOnly: true
+        phone_number:
+          type: string
+          readOnly: true
+        role:
+          allOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          readOnly: true
+        is_active:
+          type: boolean
+          readOnly: true
+        is_staff:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - department
+      - email
+      - full_name
+      - id
+      - is_active
+      - is_staff
+      - phone_number
+      - role
+      - updated_at
+    Register:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        full_name:
+          type: string
+          maxLength: 255
+        department:
+          type: string
+          maxLength: 100
+        phone_number:
+          type: string
+          maxLength: 20
+        role:
+          $ref: '#/components/schemas/RoleEnum'
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+        confirm_password:
+          type: string
+          writeOnly: true
+      required:
+      - confirm_password
+      - email
+      - full_name
+      - password
+    ResetPassword:
+      type: object
+      description: Serializer for resetting password using UID and token.
+      properties:
+        uid:
+          type: string
+        token:
+          type: string
+        new_password:
+          type: string
+          writeOnly: true
+        confirm_password:
+          type: string
+          writeOnly: true
+      required:
+      - confirm_password
+      - new_password
+      - token
+      - uid
+    RoleEnum:
+      enum:
+      - ADMIN
+      - SOC_ANALYST
+      - MANAGER
+      type: string
+      description: |-
+        * `ADMIN` - Admin
+        * `SOC_ANALYST` - SOC Analyst
+        * `MANAGER` - Manager
+    SeverityEnum:
+      enum:
+      - LOW
+      - MEDIUM
+      - HIGH
+      - CRITICAL
+      type: string
+      description: |-
+        * `LOW` - Low
+        * `MEDIUM` - Medium
+        * `HIGH` - High
+        * `CRITICAL` - Critical
+    StatusEnum:
+      enum:
+      - OPEN
+      - IN_PROGRESS
+      - RESOLVED
+      - CLOSED
+      type: string
+      description: |-
+        * `OPEN` - Open
+        * `IN_PROGRESS` - In Progress
+        * `RESOLVED` - Resolved
+        * `CLOSED` - Closed
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    UpdateIncident:
+      type: object
+      description: Serializer for updating incidents.
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/SeverityEnum'
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        assigned_to:
+          type: string
+          format: uuid
+          nullable: true
+      required:
+      - description
+      - title
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

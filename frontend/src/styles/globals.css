@@ -1,0 +1,4509 @@
+@import "tailwindcss";
+
+/* ========================================
+   SOC Design System
+======================================== */
+@theme {
+  --color-soc-page: #020617;
+  --color-soc-surface: #07101f;
+  --color-soc-panel: #0f172a;
+  --color-soc-border: #1e293b;
+
+  --color-soc-text: #f8fafc;
+  --color-soc-text-secondary: #cbd5e1;
+  --color-soc-muted: #94a3b8;
+  --color-soc-subtle: #64748b;
+
+  --color-soc-accent: #22d3ee;
+  --color-soc-accent-strong: #0891b2;
+
+  --color-soc-success: #10b981;
+  --color-soc-warning: #f59e0b;
+  --color-soc-critical: #f87171;
+}
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #f8fafc;
+  background: #020617;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  background: #020617;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  background: #020617;
+  color: #f8fafc;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+  
+
+
+/* ========================================
+   Authentication — Cyber Glassmorphism
+======================================== */
+
+.login-page {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.08fr)
+    minmax(420px, 0.92fr);
+
+  overflow: hidden;
+
+  color: #f8fafc;
+
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(6, 182, 212, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 72% 82%,
+      rgba(14, 165, 233, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 95% 10%,
+      rgba(34, 211, 238, 0.05),
+      transparent 25%
+    ),
+    linear-gradient(
+      135deg,
+      #020617 0%,
+      #020b18 45%,
+      #030712 100%
+    );
+}
+
+/* Global cyber grid */
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(34, 211, 238, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(34, 211, 238, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      transparent
+    );
+}
+
+/* Large ambient glow */
+.login-page::after {
+  content: "";
+  position: absolute;
+
+  z-index: -1;
+
+  width: min(55vw, 850px);
+  aspect-ratio: 1;
+
+  left: -18%;
+  bottom: -45%;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.13),
+      rgba(6, 182, 212, 0.035) 40%,
+      transparent 70%
+    );
+
+  filter: blur(35px);
+}
+
+/* ========================================
+   AI Cybersecurity Background
+======================================== */
+
+.cyber-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+/* ========================================
+   AI Neural Nodes
+======================================== */
+
+.cyber-node {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #22d3ee;
+
+  opacity: 0.38;
+
+  box-shadow:
+    0 0 6px rgba(34, 211, 238, 0.9),
+    0 0 18px rgba(34, 211, 238, 0.35);
+
+  animation:
+    cyber-node-pulse
+    3.5s ease-in-out infinite;
+}
+
+.cyber-node::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.12);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+.cyber-node--1 {
+  top: 19%;
+  left: 34%;
+
+  animation-delay: 0s;
+}
+
+.cyber-node--2 {
+  top: 34%;
+  left: 45%;
+
+  animation-delay: 0.6s;
+}
+
+.cyber-node--3 {
+  top: 67%;
+  left: 27%;
+
+  animation-delay: 1.1s;
+}
+
+.cyber-node--4 {
+  top: 76%;
+  left: 52%;
+
+  animation-delay: 1.7s;
+}
+
+.cyber-node--5 {
+  top: 23%;
+  left: 72%;
+
+  animation-delay: 2.1s;
+}
+
+.cyber-node--6 {
+  top: 63%;
+  left: 83%;
+
+  animation-delay: 2.6s;
+}
+
+/* ========================================
+   Neural connection lines
+======================================== */
+
+.cyber-line {
+  position: absolute;
+
+  height: 1px;
+
+  opacity: 0.18;
+
+  transform-origin: left center;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(34, 211, 238, 0.55),
+      transparent
+    );
+}
+
+.cyber-line--1 {
+  top: 25%;
+  left: 33%;
+
+  width: 19%;
+
+  transform:
+    rotate(22deg);
+}
+
+.cyber-line--2 {
+  top: 64%;
+  left: 26%;
+
+  width: 30%;
+
+  transform:
+    rotate(10deg);
+}
+
+.cyber-line--3 {
+  top: 28%;
+  left: 67%;
+
+  width: 20%;
+
+  transform:
+    rotate(42deg);
+}
+
+/* ========================================
+   Cyber HUD orbits
+======================================== */
+
+.cyber-orbit {
+  position: absolute;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.055);
+
+  border-radius: 50%;
+
+  opacity: 0.8;
+
+  animation:
+    cyber-orbit-rotate
+    35s linear infinite;
+}
+
+.cyber-orbit::before {
+  content: "";
+
+  position: absolute;
+
+  top: -3px;
+  left: 50%;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(34, 211, 238, 0.65);
+
+  box-shadow:
+    0 0 12px
+    rgba(34, 211, 238, 0.6);
+}
+
+.cyber-orbit--one {
+  width: 520px;
+  height: 520px;
+
+  left: 30%;
+  bottom: -260px;
+}
+
+.cyber-orbit--two {
+  width: 700px;
+  height: 700px;
+
+  right: -390px;
+  top: -360px;
+
+  opacity: 0.35;
+
+  animation-duration: 48s;
+  animation-direction: reverse;
+}
+
+/* ========================================
+   Security scanner
+======================================== */
+
+.cyber-scan-line {
+  position: absolute;
+
+  z-index: 0;
+
+  top: -15%;
+  left: 0;
+
+  width: 100%;
+  height: 90px;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(34, 211, 238, 0.012),
+      rgba(34, 211, 238, 0.045),
+      rgba(34, 211, 238, 0.012),
+      transparent
+    );
+
+  border-bottom:
+    1px solid
+    rgba(34, 211, 238, 0.055);
+
+  animation:
+    cyber-scan
+    9s linear infinite;
+}
+
+/* ========================================
+   AI security status
+======================================== */
+
+.ai-security-status {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.5rem;
+
+  margin-bottom: 1rem;
+
+  padding:
+    0.4rem
+    0.65rem;
+
+  border:
+    1px solid
+    rgba(16, 185, 129, 0.14);
+
+  border-radius: 999px;
+
+  background:
+    rgba(16, 185, 129, 0.035);
+
+  color: #6ee7b7;
+
+  font-size: 0.59rem;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+.ai-security-status__pulse {
+  position: relative;
+
+  width: 6px;
+  height: 6px;
+
+  flex: 0 0 6px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  box-shadow:
+    0 0 8px
+    rgba(16, 185, 129, 0.8);
+}
+
+.ai-security-status__pulse::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border:
+    1px solid
+    rgba(16, 185, 129, 0.3);
+
+  border-radius: 50%;
+
+  animation:
+    ai-status-ring
+    2s ease-out infinite;
+}
+
+/* ========================================
+   Left hero
+======================================== */
+
+.login-page__hero {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+  min-height: 100dvh;
+
+  display: flex;
+
+  overflow: hidden;
+
+  padding:
+    clamp(2rem, 4.5vw, 5rem)
+    clamp(2rem, 5vw, 5.5rem);
+}
+
+/* Additional hero glow */
+.login-page__hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: clamp(280px, 38vw, 650px);
+  height: clamp(280px, 38vw, 650px);
+
+  top: 48%;
+  left: 18%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(8, 145, 178, 0.12),
+      rgba(8, 145, 178, 0.025) 45%,
+      transparent 72%
+    );
+
+  filter: blur(12px);
+}
+
+/* Decorative cyber ring */
+.login-page__hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: clamp(280px, 35vw, 540px);
+  aspect-ratio: 1;
+
+  right: -22%;
+  bottom: -25%;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.07);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 70px rgba(34, 211, 238, 0.015),
+    0 0 0 140px rgba(34, 211, 238, 0.01);
+
+  pointer-events: none;
+}
+
+.login-page__hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 700px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Brand
+======================================== */
+
+.login-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  min-width: 0;
+}
+
+.login-brand__icon {
+  position: relative;
+
+  width: 54px;
+  height: 54px;
+
+  flex: 0 0 54px;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.28);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34, 211, 238, 0.12),
+      rgba(8, 145, 178, 0.035)
+    );
+
+  color: #22d3ee;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 25px rgba(6, 182, 212, 0.08);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.login-brand__icon::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 50%
+    );
+
+  pointer-events: none;
+}
+
+.login-brand__eyebrow {
+  display: block;
+
+  margin-bottom: 0.3rem;
+
+  color: #22d3ee;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+}
+
+.login-brand h1 {
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size: 1.15rem;
+  font-weight: 600;
+
+  letter-spacing: -0.02em;
+}
+
+/* ========================================
+   Hero typography
+======================================== */
+
+.login-page__intro {
+  margin: auto 0;
+
+  padding: clamp(3rem, 8vh, 6rem) 0;
+}
+
+.login-page__label {
+  margin: 0 0 1.4rem;
+
+  color: #22d3ee !important;
+
+  font-size: 0.72rem !important;
+  font-weight: 800;
+
+  letter-spacing: 0.21em;
+
+  text-transform: uppercase;
+}
+
+.login-page__intro h2 {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size:
+    clamp(
+      3rem,
+      5vw,
+      5.25rem
+    );
+
+  font-weight: 500;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+
+  text-wrap: balance;
+
+  text-shadow:
+    0 0 45px
+    rgba(34, 211, 238, 0.035);
+}
+
+.login-page__intro > p:last-child {
+  max-width: 590px;
+
+  margin: 1.8rem 0 0;
+
+  color: #94a3b8;
+
+  font-size:
+    clamp(
+      0.95rem,
+      1.25vw,
+      1.08rem
+    );
+
+  line-height: 1.85;
+}
+
+/* ========================================
+   Secure environment indicator
+======================================== */
+
+.login-page__status {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.65rem;
+
+  padding:
+    0.5rem
+    0.75rem;
+
+  border:
+    1px solid
+    rgba(148, 163, 184, 0.07);
+
+  border-radius: 999px;
+
+  background:
+    rgba(15, 23, 42, 0.28);
+
+  color: #64748b;
+
+  font-size: 0.75rem;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.login-page__status span {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  border-radius: 999px;
+
+  background: #10b981;
+
+  box-shadow:
+    0 0 6px rgba(16, 185, 129, 0.9),
+    0 0 14px rgba(16, 185, 129, 0.4);
+
+  animation:
+    soc-status-pulse
+    2.4s ease-in-out infinite;
+}
+
+/* ========================================
+   Right form area
+======================================== */
+
+.login-page__form-section {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+  min-height: 100dvh;
+
+  display: grid;
+  place-items: center;
+
+  padding:
+    clamp(1.5rem, 4vw, 4.5rem);
+
+  border-left:
+    1px solid
+    rgba(148, 163, 184, 0.07);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(2, 6, 23, 0.28),
+      rgba(3, 7, 18, 0.48)
+    );
+
+  overflow: hidden;
+}
+
+/* Glow behind login card */
+.login-page__form-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: min(75%, 520px);
+  aspect-ratio: 1;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(6, 182, 212, 0.11),
+      rgba(14, 165, 233, 0.025) 48%,
+      transparent 72%
+    );
+
+  filter: blur(35px);
+}
+
+/* ========================================
+   Glass login card
+======================================== */
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+
+  width: min(100%, 470px);
+
+  min-width: 0;
+
+  padding:
+    clamp(1.65rem, 3vw, 2.5rem);
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(148, 163, 184, 0.14);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.58),
+      rgba(2, 6, 23, 0.44)
+    );
+
+  box-shadow:
+    0 28px 80px
+      rgba(0, 0, 0, 0.38),
+    0 0 0 1px
+      rgba(255, 255, 255, 0.018)
+      inset,
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.055);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(125%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(125%);
+}
+
+/* Top glass highlight */
+.login-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(34, 211, 238, 0.55),
+      transparent
+    );
+
+  opacity: 0.65;
+}
+
+/* Internal cyan glow */
+.login-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 190px;
+  height: 190px;
+
+  top: -120px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  background:
+    rgba(34, 211, 238, 0.09);
+
+  filter: blur(50px);
+}
+
+/* ========================================
+   Mobile logo
+======================================== */
+
+.login-card__mobile-logo {
+  display: none;
+}
+
+/* ========================================
+   Card header
+======================================== */
+
+.login-card__header {
+  position: relative;
+  z-index: 2;
+}
+
+/* Corner HUD */
+.login-card__header::after {
+  content: "";
+
+  position: absolute;
+
+  top: -1.1rem;
+  right: -1.1rem;
+
+  width: 42px;
+  height: 42px;
+
+  border-top:
+    1px solid
+    rgba(34, 211, 238, 0.22);
+
+  border-right:
+    1px solid
+    rgba(34, 211, 238, 0.22);
+
+  border-radius:
+    0 8px 0 0;
+
+  pointer-events: none;
+}
+
+.login-card__eyebrow {
+  margin: 0 0 0.75rem;
+
+  color: #22d3ee !important;
+
+  font-size: 0.68rem !important;
+  font-weight: 800;
+
+  letter-spacing: 0.19em;
+
+  text-transform: uppercase;
+}
+
+.login-card__header h2 {
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size:
+    clamp(
+      2rem,
+      3vw,
+      2.65rem
+    );
+
+  font-weight: 500;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.045em;
+}
+
+.login-card__header > p:last-child {
+  margin: 0.85rem 0 0;
+
+  color: #94a3b8;
+
+  font-size: 0.94rem;
+
+  line-height: 1.7;
+}
+
+/* ========================================
+   Form
+======================================== */
+
+.login-form {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  gap: 1.35rem;
+
+  margin-top: 2rem;
+}
+
+.form-group {
+  min-width: 0;
+
+  display: grid;
+
+  gap: 0.55rem;
+}
+
+.form-group label {
+  color: #cbd5e1;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  letter-spacing: 0.005em;
+}
+
+/* ========================================
+   Glass inputs
+======================================== */
+
+.input-wrapper {
+  position: relative;
+
+  min-width: 0;
+}
+
+.input-wrapper__icon {
+  position: absolute;
+
+  z-index: 2;
+
+  top: 50%;
+  left: 1rem;
+
+  color: #64748b;
+
+  transform:
+    translateY(-50%);
+
+  pointer-events: none;
+
+  transition:
+    color 180ms ease,
+    filter 180ms ease;
+}
+
+.input-wrapper input {
+  width: 100%;
+  min-width: 0;
+
+  min-height: 54px;
+
+  border:
+    1px solid
+    rgba(100, 116, 139, 0.28);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  padding:
+    0.85rem
+    3rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.62),
+      rgba(15, 23, 42, 0.36)
+    );
+
+  color: #f8fafc;
+
+  caret-color: #22d3ee;
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.025);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.input-wrapper input::placeholder {
+  color: #52627a;
+
+  opacity: 1;
+}
+
+.input-wrapper input:hover:not(:disabled) {
+  border-color:
+    rgba(100, 116, 139, 0.48);
+
+  background:
+    rgba(15, 23, 42, 0.62);
+}
+
+.input-wrapper input:focus {
+  border-color:
+    rgba(34, 211, 238, 0.72);
+
+  background:
+    rgba(15, 23, 42, 0.72);
+
+  box-shadow:
+    0 0 0 3px
+      rgba(34, 211, 238, 0.09),
+    0 0 24px
+      rgba(6, 182, 212, 0.055),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.035);
+}
+
+.input-wrapper:focus-within
+.input-wrapper__icon {
+  color: #22d3ee;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(34, 211, 238, 0.25)
+    );
+}
+
+.input-wrapper input:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+/* ========================================
+   Password button
+======================================== */
+
+.password-toggle {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 50%;
+  right: 0.6rem;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  padding: 0;
+
+  background: transparent;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  transform:
+    translateY(-50%);
+
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.password-toggle:hover {
+  color: #cbd5e1;
+
+  background:
+    rgba(148, 163, 184, 0.07);
+}
+
+.password-toggle:focus-visible {
+  outline:
+    2px solid
+    rgba(34, 211, 238, 0.75);
+
+  outline-offset: 1px;
+}
+
+/* ========================================
+   Error message
+======================================== */
+
+.login-form__error {
+  padding:
+    0.85rem
+    1rem;
+
+  border:
+    1px solid
+    rgba(248, 113, 113, 0.28);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(127, 29, 29, 0.18),
+      rgba(69, 10, 10, 0.11)
+    );
+
+  color: #fca5a5;
+
+  font-size: 0.84rem;
+
+  line-height: 1.5;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   Sign-in button
+======================================== */
+
+.login-button {
+  position: relative;
+
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  overflow: hidden;
+
+  margin-top: 0.35rem;
+
+  border:
+    1px solid
+    rgba(103, 232, 249, 0.18);
+
+  border-radius: 12px;
+
+  padding:
+    0.75rem
+    1rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0891b2,
+      #0e7490
+    );
+
+  color: #ecfeff;
+
+  font-weight: 700;
+
+  letter-spacing: -0.01em;
+
+  box-shadow:
+    0 10px 30px
+      rgba(8, 145, 178, 0.16),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.16);
+
+  cursor: pointer;
+
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+/* Button light reflection */
+.login-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 60%;
+  height: 100%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.11),
+      transparent
+    );
+
+  transform:
+    skewX(-20deg);
+
+  transition:
+    left 450ms ease;
+}
+
+.login-button:hover:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  border-color:
+    rgba(103, 232, 249, 0.32);
+
+  background:
+    linear-gradient(
+      135deg,
+      #06a2c5,
+      #0e7490
+    );
+
+  box-shadow:
+    0 14px 35px
+      rgba(8, 145, 178, 0.22),
+    0 0 22px
+      rgba(34, 211, 238, 0.06),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.18);
+}
+
+.login-button:hover:not(:disabled)::before {
+  left: 150%;
+}
+
+.login-button:active:not(:disabled) {
+  transform:
+    translateY(0);
+}
+
+.login-button:focus-visible {
+  outline:
+    3px solid
+    rgba(34, 211, 238, 0.25);
+
+  outline-offset: 3px;
+}
+
+.login-button:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.65;
+}
+
+/* ========================================
+   Loading spinner
+======================================== */
+
+.button-spinner {
+  width: 16px;
+  height: 16px;
+
+  flex: 0 0 16px;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation:
+    soc-spin
+    700ms linear infinite;
+}
+
+/* ========================================
+   Footer
+======================================== */
+
+.login-card__footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  margin-top: 1.75rem;
+
+  color: #52627a;
+
+  font-size: 0.72rem;
+}
+
+.login-card__footer svg {
+  color: #64748b;
+}
+
+/* ========================================
+   Authentication animations
+======================================== */
+
+@keyframes soc-status-pulse {
+  0%,
+  100% {
+    opacity: 1;
+
+    box-shadow:
+      0 0 6px
+        rgba(16, 185, 129, 0.9),
+      0 0 14px
+        rgba(16, 185, 129, 0.35);
+  }
+
+  50% {
+    opacity: 0.65;
+
+    box-shadow:
+      0 0 4px
+        rgba(16, 185, 129, 0.55),
+      0 0 8px
+        rgba(16, 185, 129, 0.2);
+  }
+}
+
+@keyframes cyber-node-pulse {
+  0%,
+  100% {
+    opacity: 0.22;
+
+    transform:
+      scale(0.85);
+  }
+
+  50% {
+    opacity: 0.75;
+
+    transform:
+      scale(1.2);
+  }
+}
+
+@keyframes cyber-orbit-rotate {
+  from {
+    transform:
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      rotate(360deg);
+  }
+}
+
+@keyframes cyber-scan {
+  0% {
+    top: -15%;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.7;
+  }
+
+  90%,
+  100% {
+    top: 110%;
+    opacity: 0;
+  }
+}
+
+@keyframes ai-status-ring {
+  0% {
+    opacity: 0.8;
+
+    transform:
+      scale(0.6);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(1.5);
+  }
+}
+/* ========================================
+   3D AI Security Core
+======================================== */
+
+.ai-core-scene {
+  position: absolute;
+  z-index: 3;
+
+  top: clamp(5.5rem, 12vh, 8.5rem);
+  right: clamp(0rem, 2vw, 2rem);
+
+  width: 190px;
+
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+
+  pointer-events: none;
+
+  perspective: 900px;
+}
+
+.ai-core {
+  position: relative;
+
+  width: 150px;
+  height: 150px;
+
+  display: grid;
+  place-items: center;
+
+  transform-style: preserve-3d;
+
+  animation:
+    ai-core-float
+    6s ease-in-out infinite;
+}
+
+/* Ambient energy field */
+
+.ai-core::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(34, 211, 238, 0.18),
+      rgba(6, 182, 212, 0.06) 42%,
+      transparent 72%
+    );
+
+  filter: blur(15px);
+
+  animation:
+    ai-core-energy-pulse
+    3.5s ease-in-out infinite;
+}
+
+/* Ground reflection */
+
+.ai-core::after {
+  content: "";
+
+  position: absolute;
+
+  width: 105px;
+  height: 18px;
+
+  left: 50%;
+  bottom: -12px;
+
+  transform:
+    translateX(-50%)
+    rotateX(70deg);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(34, 211, 238, 0.18),
+      transparent 70%
+    );
+
+  filter: blur(6px);
+
+  opacity: 0.7;
+}
+
+/* ========================================
+   3D Rings
+======================================== */
+
+.ai-core__ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform-style: preserve-3d;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.28);
+
+  box-shadow:
+    inset 0 0 12px
+      rgba(34, 211, 238, 0.04),
+    0 0 12px
+      rgba(34, 211, 238, 0.04);
+}
+
+.ai-core__ring::before {
+  content: "";
+
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  top: -3px;
+  left: 50%;
+
+  border-radius: 50%;
+
+  background: #67e8f9;
+
+  box-shadow:
+    0 0 7px #22d3ee,
+    0 0 16px
+      rgba(34, 211, 238, 0.6);
+}
+
+.ai-core__ring--outer {
+  width: 145px;
+  height: 145px;
+
+  border-style: dashed;
+
+  opacity: 0.55;
+
+  animation:
+    ai-ring-outer
+    14s linear infinite;
+}
+
+.ai-core__ring--middle {
+  width: 112px;
+  height: 112px;
+
+  opacity: 0.7;
+
+  transform:
+    rotateX(65deg);
+
+  animation:
+    ai-ring-middle
+    9s linear infinite;
+}
+
+.ai-core__ring--vertical {
+  width: 100px;
+  height: 100px;
+
+  opacity: 0.55;
+
+  transform:
+    rotateY(72deg)
+    rotateZ(20deg);
+
+  animation:
+    ai-ring-vertical
+    11s linear infinite;
+}
+
+/* ========================================
+   Holographic sphere
+======================================== */
+
+.ai-core__energy {
+  position: relative;
+
+  z-index: 5;
+
+  width: 72px;
+  height: 72px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      rgba(207, 250, 254, 0.28),
+      rgba(34, 211, 238, 0.11) 28%,
+      rgba(8, 145, 178, 0.07) 52%,
+      rgba(2, 6, 23, 0.55) 76%
+    );
+
+  border:
+    1px solid
+    rgba(103, 232, 249, 0.28);
+
+  box-shadow:
+    inset -10px -12px 25px
+      rgba(2, 6, 23, 0.48),
+    inset 6px 6px 16px
+      rgba(103, 232, 249, 0.07),
+    0 0 20px
+      rgba(34, 211, 238, 0.12),
+    0 0 55px
+      rgba(6, 182, 212, 0.08);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  animation:
+    ai-sphere-pulse
+    3.8s ease-in-out infinite;
+}
+
+.ai-core__sphere {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(103, 232, 249, 0.18);
+
+  border-radius: 50%;
+
+  background:
+    rgba(8, 145, 178, 0.08);
+
+  color: #67e8f9;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(34, 211, 238, 0.4)
+    );
+}
+
+/* ========================================
+   AI particles
+======================================== */
+
+.ai-core__particle {
+  position: absolute;
+
+  z-index: 6;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #67e8f9;
+
+  box-shadow:
+    0 0 8px
+    rgba(34, 211, 238, 0.85);
+}
+
+.ai-core__particle--1 {
+  top: 20%;
+  left: 13%;
+
+  animation:
+    ai-particle-one
+    5s ease-in-out infinite;
+}
+
+.ai-core__particle--2 {
+  right: 11%;
+  top: 43%;
+
+  animation:
+    ai-particle-two
+    6s ease-in-out infinite;
+}
+
+.ai-core__particle--3 {
+  bottom: 13%;
+  left: 34%;
+
+  animation:
+    ai-particle-three
+    4.5s ease-in-out infinite;
+}
+
+/* ========================================
+   AI Core caption
+======================================== */
+
+.ai-core__caption {
+  display: flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  padding:
+    0.35rem
+    0.6rem;
+
+  border:
+    1px solid
+    rgba(34, 211, 238, 0.09);
+
+  border-radius: 999px;
+
+  background:
+    rgba(2, 6, 23, 0.42);
+
+  color: #64748b;
+
+  font-size: 0.52rem;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ai-core__caption-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #22d3ee;
+
+  box-shadow:
+    0 0 7px
+    rgba(34, 211, 238, 0.8);
+}
+
+/* ========================================
+   Card telemetry
+======================================== */
+
+.login-card__telemetry {
+  position: absolute;
+
+  z-index: 5;
+
+  top: -0.25rem;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.6rem;
+
+  color: #52627a;
+
+  font-size: 0.52rem;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  pointer-events: none;
+}
+
+.login-card__telemetry span {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.25rem;
+}
+
+.login-card__telemetry span:first-child {
+  color: #6ee7b7;
+}
+
+.login-card__telemetry svg {
+  color: #10b981;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(16, 185, 129, 0.35)
+    );
+}
+
+/* ========================================
+   Enhanced 3D glass card
+======================================== */
+
+.login-card {
+  transform:
+    translateZ(0);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 350ms
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .login-card:hover {
+    transform:
+      translateY(-4px)
+      perspective(1000px)
+      rotateX(0.8deg)
+      rotateY(-0.8deg);
+
+    border-color:
+      rgba(34, 211, 238, 0.21);
+
+    box-shadow:
+      0 34px 90px
+        rgba(0, 0, 0, 0.44),
+      0 0 38px
+        rgba(6, 182, 212, 0.055),
+      inset 0 1px 0
+        rgba(255, 255, 255, 0.07);
+  }
+}
+
+/* ========================================
+   3D animations
+======================================== */
+
+@keyframes ai-core-float {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotateX(2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-8px)
+      rotateX(-2deg);
+  }
+}
+
+@keyframes ai-core-energy-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes ai-ring-outer {
+  from {
+    transform:
+      rotateZ(0deg)
+      rotateX(15deg);
+  }
+
+  to {
+    transform:
+      rotateZ(360deg)
+      rotateX(15deg);
+  }
+}
+
+@keyframes ai-ring-middle {
+  from {
+    transform:
+      rotateX(65deg)
+      rotateZ(0deg);
+  }
+
+  to {
+    transform:
+      rotateX(65deg)
+      rotateZ(-360deg);
+  }
+}
+
+@keyframes ai-ring-vertical {
+  from {
+    transform:
+      rotateY(72deg)
+      rotateZ(20deg)
+      rotateX(0deg);
+  }
+
+  to {
+    transform:
+      rotateY(72deg)
+      rotateZ(380deg)
+      rotateX(360deg);
+  }
+}
+
+@keyframes ai-sphere-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      inset -10px -12px 25px
+        rgba(2, 6, 23, 0.48),
+      0 0 20px
+        rgba(34, 211, 238, 0.12),
+      0 0 50px
+        rgba(6, 182, 212, 0.07);
+  }
+
+  50% {
+    transform: scale(1.045);
+
+    box-shadow:
+      inset -10px -12px 25px
+        rgba(2, 6, 23, 0.48),
+      0 0 28px
+        rgba(34, 211, 238, 0.2),
+      0 0 65px
+        rgba(6, 182, 212, 0.1);
+  }
+}
+
+@keyframes ai-particle-one {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+
+    opacity: 0.25;
+  }
+
+  50% {
+    transform:
+      translate3d(12px, -12px, 18px);
+
+    opacity: 0.9;
+  }
+}
+
+@keyframes ai-particle-two {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+
+    opacity: 0.3;
+  }
+
+  50% {
+    transform:
+      translate3d(-15px, 10px, 25px);
+
+    opacity: 0.85;
+  }
+}
+
+@keyframes ai-particle-three {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+
+    opacity: 0.25;
+  }
+
+  50% {
+    transform:
+      translate3d(8px, -15px, 15px);
+
+    opacity: 0.8;
+  }
+}
+@media (min-width: 901px) and (max-width: 1350px) {
+  .ai-core-scene {
+    width: 150px;
+
+    top: 6.5rem;
+    right: -0.5rem;
+
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+}
+
+@media (min-width: 1351px) {
+  .login-page__intro {
+    padding-right: 7rem;
+  }
+}
+/* ========================================
+   Medium desktop / small laptop
+======================================== */
+
+@media (max-width: 1200px) {
+  .login-page {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(400px, 0.9fr);
+  }
+
+  .login-page__hero {
+    padding:
+      clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .login-page__intro h2 {
+    font-size:
+      clamp(
+        2.8rem,
+        5vw,
+        4.25rem
+      );
+  }
+
+  .login-page__form-section {
+    padding:
+      clamp(1.5rem, 3vw, 3rem);
+  }
+}
+
+/* ========================================
+   Tablet
+======================================== */
+
+@media (max-width: 900px) {
+  .ai-core-scene {
+  display: none;
+}
+  .login-page {
+    grid-template-columns:
+      minmax(0, 1fr);
+
+    overflow-y: auto;
+
+    background:
+      radial-gradient(
+        circle at 50% 15%,
+        rgba(6, 182, 212, 0.14),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 85% 85%,
+        rgba(14, 165, 233, 0.08),
+        transparent 30%
+      ),
+      #020617;
+  }
+
+  .login-page__hero {
+    display: none;
+  }
+
+  .login-page__form-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    border-left: 0;
+
+    padding:
+      max(
+        2rem,
+        env(safe-area-inset-top)
+      )
+      clamp(
+        1.25rem,
+        5vw,
+        2.5rem
+      )
+      max(
+        2rem,
+        env(safe-area-inset-bottom)
+      );
+
+    background: transparent;
+  }
+
+  .login-page__form-section::before {
+    width: min(90vw, 600px);
+
+    opacity: 0.9;
+  }
+
+  .login-card {
+    width:
+      min(
+        100%,
+        500px
+      );
+
+    padding:
+      clamp(
+        1.75rem,
+        5vw,
+        2.5rem
+      );
+  }
+
+  .login-card__mobile-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 0.7rem;
+
+    width: fit-content;
+
+    margin-bottom: 2.5rem;
+
+    color: #22d3ee;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .login-card__mobile-logo svg {
+    flex: 0 0 auto;
+
+    filter:
+      drop-shadow(
+        0 0 8px
+        rgba(34, 211, 238, 0.2)
+      );
+  }
+
+  .cyber-node--1 {
+    top: 12%;
+    left: 12%;
+  }
+
+  .cyber-node--2 {
+    top: 25%;
+    left: 82%;
+  }
+
+  .cyber-node--3 {
+    top: 70%;
+    left: 10%;
+  }
+
+  .cyber-node--4 {
+    top: 85%;
+    left: 82%;
+  }
+
+  .cyber-node--5,
+  .cyber-node--6,
+  .cyber-line {
+    display: none;
+  }
+
+  .cyber-orbit--one {
+    width: 420px;
+    height: 420px;
+
+    left: -220px;
+    bottom: -180px;
+  }
+
+  .cyber-orbit--two {
+    width: 460px;
+    height: 460px;
+
+    top: -250px;
+    right: -250px;
+  }
+}
+
+/* ========================================
+   Mobile
+======================================== */
+
+@media (max-width: 600px) {
+  .login-page {
+    min-height: 100dvh;
+  }
+
+  .login-page::before {
+    background-size:
+      36px 36px;
+
+    opacity: 0.7;
+  }
+
+  .login-page__form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+      max(
+        1rem,
+        env(safe-area-inset-top)
+      )
+      1rem
+      max(
+        1rem,
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  .login-card {
+    width: 100%;
+
+    padding:
+      clamp(
+        1.35rem,
+        5vw,
+        1.75rem
+      );
+
+    border-radius: 18px;
+  }
+
+  .login-card__mobile-logo {
+    margin-bottom: 2rem;
+  }
+
+  .login-card__header h2 {
+    font-size:
+      clamp(
+        1.8rem,
+        8vw,
+        2.15rem
+      );
+  }
+
+  .login-card__header > p:last-child {
+    font-size: 0.88rem;
+  }
+
+  .login-form {
+    gap: 1.15rem;
+
+    margin-top: 1.65rem;
+  }
+
+  .input-wrapper input {
+    min-height: 52px;
+
+    font-size: 16px;
+
+    padding-left: 2.85rem;
+    padding-right: 2.85rem;
+  }
+
+  .login-button {
+    min-height: 52px;
+  }
+
+  .login-card__footer {
+    margin-top: 1.5rem;
+  }
+
+  .cyber-scan-line {
+    height: 65px;
+
+    animation-duration: 11s;
+  }
+
+  .cyber-orbit {
+    opacity: 0.45;
+  }
+
+  .cyber-node {
+    opacity: 0.3;
+  }
+
+  .ai-security-status {
+    max-width: 100%;
+
+    margin-bottom: 0.85rem;
+
+    padding:
+      0.35rem
+      0.55rem;
+
+    font-size: 0.54rem;
+
+    letter-spacing: 0.09em;
+  }
+}
+
+/* ========================================
+   Small mobile — 360px and under
+======================================== */
+
+@media (max-width: 360px) {
+  .ai-security-status {
+    white-space: normal;
+
+    line-height: 1.4;
+  }
+
+  .cyber-orbit--two {
+    display: none;
+  }
+}
+
+/* ========================================
+   Small mobile — 320px+
+======================================== */
+
+@media (max-width: 380px) {
+  .login-page__form-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .login-card {
+    padding:
+      1.25rem 1rem;
+
+    border-radius: 16px;
+  }
+
+  .login-card__mobile-logo {
+    margin-bottom: 1.6rem;
+
+    font-size: 0.88rem;
+  }
+
+  .login-card__eyebrow {
+    font-size:
+      0.62rem !important;
+
+    letter-spacing: 0.16em;
+  }
+
+  .login-card__header h2 {
+    font-size: 1.75rem;
+  }
+
+  .login-card__header > p:last-child {
+    font-size: 0.84rem;
+
+    line-height: 1.6;
+  }
+
+  .form-group label {
+    font-size: 0.78rem;
+  }
+
+  .input-wrapper input {
+    min-height: 50px;
+  }
+
+  .login-button {
+    min-height: 50px;
+
+    font-size: 0.9rem;
+  }
+
+  .login-card__footer {
+    font-size: 0.67rem;
+  }
+}
+
+/* ========================================
+   Short-height devices
+======================================== */
+
+@media (max-height: 700px) and (min-width: 901px) {
+  .login-page__hero,
+  .login-page__form-section {
+    min-height: 700px;
+  }
+
+  .login-page__intro {
+    padding: 2rem 0;
+  }
+
+  .login-page__intro h2 {
+    font-size:
+      clamp(
+        2.6rem,
+        4.5vw,
+        4rem
+      );
+  }
+
+  .login-card {
+    padding: 1.75rem 2rem;
+  }
+
+  .login-form {
+    margin-top: 1.5rem;
+
+    gap: 1rem;
+  }
+
+  .login-card__footer {
+    margin-top: 1.35rem;
+  }
+}
+
+/* ========================================
+   Large desktop
+======================================== */
+
+@media (min-width: 1600px) {
+  .login-page {
+    grid-template-columns:
+      minmax(0, 1.08fr)
+      minmax(520px, 0.92fr);
+  }
+
+  .login-page__hero-content {
+    width:
+      min(
+        100%,
+        760px
+      );
+  }
+
+  .login-card {
+    width:
+      min(
+        100%,
+        490px
+      );
+  }
+}
+
+/* ========================================
+   Reduced motion accessibility
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .login-page *,
+  .login-page *::before,
+  .login-page *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+}
+
+/* ========================================
+   Global authentication loader
+======================================== */
+
+.app-loader {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: #020617;
+}
+
+.app-loader__content {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.app-loader__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #1e293b;
+  border-top-color: #22d3ee;
+  border-radius: 50%;
+  animation: soc-spin 700ms linear infinite;
+}
+
+@keyframes soc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   Temporary protected dashboard
+======================================== */
+
+.temporary-dashboard {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: #020617;
+  color: #f8fafc;
+}
+
+.temporary-dashboard__card {
+  width: min(100%, 600px);
+  box-sizing: border-box;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid #1e293b;
+  border-radius: 18px;
+  background: #07101f;
+  text-align: center;
+}
+
+.temporary-dashboard__card > svg {
+  color: #22d3ee;
+}
+
+.temporary-dashboard__eyebrow {
+  margin-top: 1.25rem;
+  color: #10b981 !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.temporary-dashboard__card h1 {
+  margin: 0.75rem 0;
+  font-size: clamp(1.7rem, 5vw, 2.8rem);
+}
+
+.temporary-dashboard__card p {
+  color: #94a3b8;
+}
+
+.temporary-dashboard__card span {
+  display: block;
+  margin-top: 1rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.temporary-dashboard__card button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  padding: 0.7rem 1.1rem;
+  background: #0f172a;
+  color: #e2e8f0;
+  cursor: pointer;
+}
+.mobile-ai-core {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-ai-core {
+    display: flex;
+    align-items: center;
+
+    gap: 0.65rem;
+
+    width: fit-content;
+
+    margin:
+      -1rem 0
+      1.5rem;
+
+    color: #64748b;
+
+    font-size: 0.55rem;
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+  }
+
+  .mobile-ai-core__ring {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+      1px dashed
+      rgba(34, 211, 238, 0.3);
+
+    border-radius: 50%;
+
+    animation:
+      mobile-ai-ring
+      8s linear infinite;
+  }
+
+  .mobile-ai-core__center {
+    width: 27px;
+    height: 27px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+      1px solid
+      rgba(34, 211, 238, 0.2);
+
+    border-radius: 50%;
+
+    background:
+      rgba(8, 145, 178, 0.09);
+
+    color: #22d3ee;
+
+    box-shadow:
+      0 0 15px
+      rgba(34, 211, 238, 0.08);
+
+    animation:
+      mobile-ai-center
+      8s linear infinite reverse;
+  }
+}
+
+@keyframes mobile-ai-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mobile-ai-center {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================
+   Premium gradient brand icon
+======================================== */
+
+.login-brand__icon {
+  border-color:
+    rgba(139, 92, 246, 0.32);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(56, 189, 248, 0.14),
+      rgba(139, 92, 246, 0.11),
+      rgba(236, 72, 153, 0.07)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.09),
+    0 0 25px
+      rgba(56, 189, 248, 0.09),
+    0 0 45px
+      rgba(139, 92, 246, 0.05);
+}
+
+/* ========================================
+   Gradient cyber text
+======================================== */
+
+.login-brand__eyebrow,
+.login-page__label,
+.login-card__eyebrow {
+  background:
+    linear-gradient(
+      90deg,
+      #67e8f9,
+      #a78bfa,
+      #f0abfc
+    );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================
+   Hero heading subtle futuristic glow
+======================================== */
+
+.login-page__intro h2 {
+  text-shadow:
+    0 0 40px
+      rgba(56, 189, 248, 0.035),
+    0 0 70px
+      rgba(139, 92, 246, 0.025);
+}
+
+/* ========================================
+   PREMIUM GLASSMORPHISM CARD
+======================================== */
+
+.login-card {
+  border:
+    1px solid
+    rgba(167, 139, 250, 0.16);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.62),
+      rgba(13, 12, 35, 0.52),
+      rgba(2, 6, 23, 0.48)
+    );
+
+  box-shadow:
+    0 32px 90px
+      rgba(0, 0, 0, 0.42),
+    0 0 60px
+      rgba(56, 189, 248, 0.035),
+    0 0 90px
+      rgba(139, 92, 246, 0.035),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.07);
+
+  backdrop-filter:
+    blur(28px)
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(28px)
+    saturate(135%);
+}
+
+/* Gradient top edge */
+
+.login-card::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #38bdf8,
+      #8b5cf6,
+      #ec4899,
+      transparent
+    );
+
+  opacity: 0.65;
+}
+
+/* Purple/pink internal glow */
+
+.login-card::after {
+  width: 240px;
+  height: 240px;
+
+  top: -150px;
+  right: -110px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56, 189, 248, 0.08),
+      rgba(139, 92, 246, 0.13),
+      rgba(236, 72, 153, 0.07)
+    );
+
+  filter: blur(55px);
+}
+
+/* ========================================
+   AI status
+======================================== */
+
+.ai-security-status {
+  border-color:
+    rgba(139, 92, 246, 0.18);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.04),
+      rgba(139, 92, 246, 0.06),
+      rgba(236, 72, 153, 0.035)
+    );
+
+  color: #c4b5fd;
+}
+
+/* ========================================
+   Premium glass inputs
+======================================== */
+
+.input-wrapper input {
+  border-color:
+    rgba(148, 163, 184, 0.24);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.68),
+      rgba(15, 15, 38, 0.48)
+    );
+}
+
+.input-wrapper input:hover:not(:disabled) {
+  border-color:
+    rgba(139, 92, 246, 0.38);
+}
+
+.input-wrapper input:focus {
+  border-color:
+    rgba(139, 92, 246, 0.72);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.76),
+      rgba(24, 16, 48, 0.54)
+    );
+
+  box-shadow:
+    0 0 0 3px
+      rgba(139, 92, 246, 0.09),
+    0 0 25px
+      rgba(56, 189, 248, 0.055),
+    0 0 35px
+      rgba(236, 72, 153, 0.025),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.035);
+}
+
+.input-wrapper:focus-within
+.input-wrapper__icon {
+  color: #a78bfa;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(139, 92, 246, 0.4)
+    );
+}
+
+/* ========================================
+   Gradient SOC button
+======================================== */
+
+.login-button {
+  border:
+    1px solid
+    rgba(196, 181, 253, 0.2);
+
+  background:
+    linear-gradient(
+      120deg,
+      #0284c7 0%,
+      #7c3aed 52%,
+      #c026d3 100%
+    );
+
+  background-size: 180% 180%;
+
+  box-shadow:
+    0 12px 35px
+      rgba(124, 58, 237, 0.18),
+    0 0 30px
+      rgba(56, 189, 248, 0.06),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.18);
+
+  animation:
+    ai-button-gradient
+    7s ease infinite;
+}
+
+.login-button:hover:not(:disabled) {
+  border-color:
+    rgba(240, 171, 252, 0.38);
+
+  background:
+    linear-gradient(
+      120deg,
+      #0ea5e9,
+      #8b5cf6,
+      #db2777
+    );
+
+  background-size: 180% 180%;
+
+  box-shadow:
+    0 16px 40px
+      rgba(124, 58, 237, 0.24),
+    0 0 28px
+      rgba(236, 72, 153, 0.09),
+    0 0 38px
+      rgba(56, 189, 248, 0.07);
+}
+
+@keyframes ai-button-gradient {
+  0%,
+  100% {
+    background-position:
+      0% 50%;
+  }
+
+  50% {
+    background-position:
+      100% 50%;
+  }
+}
+
+/* ========================================
+   Neural nodes — multi-color
+======================================== */
+
+.cyber-node--1,
+.cyber-node--4 {
+  background: #38bdf8;
+
+  box-shadow:
+    0 0 8px
+      rgba(56, 189, 248, 0.9),
+    0 0 20px
+      rgba(56, 189, 248, 0.3);
+}
+
+.cyber-node--2,
+.cyber-node--5 {
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 8px
+      rgba(167, 139, 250, 0.9),
+    0 0 20px
+      rgba(139, 92, 246, 0.32);
+}
+
+.cyber-node--3,
+.cyber-node--6 {
+  background: #f472b6;
+
+  box-shadow:
+    0 0 8px
+      rgba(244, 114, 182, 0.85),
+    0 0 20px
+      rgba(236, 72, 153, 0.28);
+}
+
+/* ========================================
+   Gradient neural connections
+======================================== */
+
+.cyber-line {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.48),
+      rgba(139, 92, 246, 0.42),
+      rgba(236, 72, 153, 0.3),
+      transparent
+    );
+}
+
+/* ========================================
+   Color-shifting HUD rings
+======================================== */
+
+.cyber-orbit {
+  border-color:
+    rgba(139, 92, 246, 0.1);
+
+  box-shadow:
+    0 0 40px
+    rgba(56, 189, 248, 0.025);
+}
+
+.cyber-orbit::before {
+  background: #c084fc;
+
+  box-shadow:
+    0 0 10px
+      rgba(192, 132, 252, 0.8),
+    0 0 22px
+      rgba(236, 72, 153, 0.32);
+}
+
+/* ========================================
+   Multi-color scanner
+======================================== */
+
+.cyber-scan-line {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(56, 189, 248, 0.012),
+      rgba(139, 92, 246, 0.045),
+      rgba(236, 72, 153, 0.022),
+      transparent
+    );
+
+  border-bottom:
+    1px solid
+    rgba(167, 139, 250, 0.08);
+}
+
+/* ========================================
+   Enhanced footer
+======================================== */
+
+.login-card__footer svg {
+  color: #8b5cf6;
+
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(139, 92, 246, 0.25)
+    );
+}
+
+/* ========================================
+   Desktop hover only
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .login-card:hover {
+    border-color:
+      rgba(167, 139, 250, 0.26);
+
+    box-shadow:
+      0 36px 100px
+        rgba(0, 0, 0, 0.46),
+      0 0 55px
+        rgba(56, 189, 248, 0.045),
+      0 0 75px
+        rgba(139, 92, 246, 0.055),
+      0 0 95px
+        rgba(236, 72, 153, 0.025),
+      inset 0 1px 0
+        rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ========================================
+   Tablet optimization
+======================================== */
+
+@media (max-width: 900px) {
+  .login-page {
+    background:
+      radial-gradient(
+        circle at 20% 15%,
+        rgba(56, 189, 248, 0.13),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 85% 25%,
+        rgba(139, 92, 246, 0.11),
+        transparent 32%
+      ),
+      radial-gradient(
+        circle at 70% 90%,
+        rgba(236, 72, 153, 0.07),
+        transparent 30%
+      ),
+      #020617;
+  }
+
+  .cyber-background::before {
+    width: 420px;
+    height: 420px;
+
+    left: -220px;
+
+    opacity: 0.13;
+  }
+
+  .cyber-background::after {
+    width: 380px;
+    height: 380px;
+
+    right: -210px;
+
+    opacity: 0.1;
+  }
+}
+
+/* ========================================
+   Mobile performance optimization
+======================================== */
+
+@media (max-width: 600px) {
+  .login-card {
+    backdrop-filter:
+      blur(20px)
+      saturate(120%);
+
+    -webkit-backdrop-filter:
+      blur(20px)
+      saturate(120%);
+  }
+
+  .cyber-background::before,
+  .cyber-background::after {
+    filter: blur(45px);
+
+    animation-duration: 24s;
+  }
+
+  .cyber-background::before {
+    width: 300px;
+    height: 300px;
+
+    left: -180px;
+  }
+
+  .cyber-background::after {
+    width: 280px;
+    height: 280px;
+
+    right: -170px;
+    bottom: -80px;
+  }
+
+  .login-button {
+    animation-duration: 10s;
+  }
+}
+
+/* ========================================
+   Low-height phone
+======================================== */
+
+@media (max-width: 600px) and (max-height: 700px) {
+  .cyber-background::after {
+    display: none;
+  }
+
+  .login-card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}
+
+/* ========================================
+   Accessibility
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-background::before,
+  .cyber-background::after,
+  .login-button {
+    animation: none !important;
+  }
+}
+/* =========================================================
+   PROFESSIONAL AI SECURITY DIGITAL OVERRIDE
+   Blue • Indigo • Violet • Purple
+========================================================= */
+
+.login-page {
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(14, 165, 233, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 72% 18%,
+      rgba(79, 70, 229, 0.15),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 92% 76%,
+      rgba(126, 34, 206, 0.11),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #020617 0%,
+      #050816 36%,
+      #090720 68%,
+      #020617 100%
+    );
+}
+
+/* Animated AI mesh */
+
+.cyber-background::before {
+  content: "";
+  position: absolute;
+
+  inset: -25%;
+  width: 150%;
+  height: 150%;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 12% 24%,
+      rgba(14, 165, 233, 0.18),
+      transparent 27%
+    ),
+    radial-gradient(
+      ellipse at 42% 12%,
+      rgba(79, 70, 229, 0.15),
+      transparent 26%
+    ),
+    radial-gradient(
+      ellipse at 70% 38%,
+      rgba(124, 58, 237, 0.17),
+      transparent 29%
+    ),
+    radial-gradient(
+      ellipse at 90% 72%,
+      rgba(147, 51, 234, 0.11),
+      transparent 25%
+    ),
+    radial-gradient(
+      ellipse at 32% 88%,
+      rgba(2, 132, 199, 0.11),
+      transparent 27%
+    );
+
+  filter: blur(30px);
+
+  transform: translate3d(0, 0, 0);
+
+  will-change: transform;
+
+  animation:
+    security-mesh-drift
+    24s ease-in-out infinite alternate;
+}
+
+@keyframes security-mesh-drift {
+  0% {
+    transform:
+      translate3d(-2%, -2%, 0)
+      scale(1);
+  }
+
+  35% {
+    transform:
+      translate3d(3%, 1%, 0)
+      scale(1.035);
+  }
+
+  70% {
+    transform:
+      translate3d(-1%, 4%, 0)
+      scale(1.06);
+  }
+
+  100% {
+    transform:
+      translate3d(3%, -1%, 0)
+      scale(1.025);
+  }
+}
+
+/* Digital security grid */
+
+.cyber-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(
+      rgba(129, 140, 248, 0.075) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(56, 189, 248, 0.065) 1px,
+      transparent 1px
+    );
+
+  background-size: 68px 68px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 12%,
+      #000 82%,
+      transparent
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #000 12%,
+      #000 82%,
+      transparent
+    );
+}
+
+/* Neural security nodes */
+
+.cyber-node {
+  background: #818cf8;
+
+  box-shadow:
+    0 0 7px rgba(129, 140, 248, 0.95),
+    0 0 22px rgba(56, 189, 248, 0.28),
+    0 0 35px rgba(124, 58, 237, 0.12);
+}
+
+.cyber-node::after {
+  border-color:
+    rgba(167, 139, 250, 0.2);
+}
+
+/* Neural network connections */
+
+.cyber-line {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.22),
+      rgba(129, 140, 248, 0.52),
+      rgba(192, 132, 252, 0.28),
+      transparent
+    );
+}
+
+/* Security HUD */
+
+.cyber-orbit {
+  border-color:
+    rgba(129, 140, 248, 0.085);
+}
+
+.cyber-orbit::before {
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 10px rgba(167, 139, 250, 0.8),
+    0 0 24px rgba(56, 189, 248, 0.25);
+}
+
+/* Digital scanner */
+
+.cyber-scan-line {
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(56, 189, 248, 0.008),
+      rgba(129, 140, 248, 0.035),
+      rgba(192, 132, 252, 0.014),
+      transparent
+    );
+
+  border-bottom:
+    1px solid
+    rgba(129, 140, 248, 0.07);
+}
+
+/* Right security workspace */
+
+.login-page__form-section {
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(124, 58, 237, 0.075),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 12% 82%,
+      rgba(14, 165, 233, 0.045),
+      transparent 34%
+    ),
+    rgba(2, 6, 23, 0.28);
+}
+
+/* Premium security glass */
+
+.login-card {
+  border:
+    1px solid
+    rgba(129, 140, 248, 0.18);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 23, 42, 0.72),
+      rgba(15, 12, 38, 0.61) 48%,
+      rgba(6, 9, 26, 0.58)
+    );
+
+  box-shadow:
+    0 32px 90px rgba(0, 0, 0, 0.44),
+    0 0 70px rgba(79, 70, 229, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+  backdrop-filter:
+    blur(26px)
+    saturate(135%);
+
+  -webkit-backdrop-filter:
+    blur(26px)
+    saturate(135%);
+}
+
+/* Animated security edge */
+
+.login-card::before {
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 4%,
+      #38bdf8 24%,
+      #6366f1 46%,
+      #a78bfa 67%,
+      #c084fc 82%,
+      transparent 96%
+    );
+
+  background-size: 200% 100%;
+
+  opacity: 0.75;
+
+  animation:
+    security-border-flow
+    9s linear infinite;
+}
+
+@keyframes security-border-flow {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Purple glass glow */
+
+.login-card::after {
+  background:
+    radial-gradient(
+      circle,
+      rgba(124, 58, 237, 0.16),
+      rgba(56, 189, 248, 0.04) 46%,
+      transparent 72%
+    );
+}
+
+/* Security status */
+
+.ai-security-status {
+  border-color:
+    rgba(129, 140, 248, 0.2);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 165, 233, 0.055),
+      rgba(99, 102, 241, 0.075),
+      rgba(124, 58, 237, 0.055)
+    );
+
+  color: #c4b5fd;
+}
+
+/* Inputs */
+
+.input-wrapper input {
+  border-color:
+    rgba(129, 140, 248, 0.2);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.76),
+      rgba(15, 12, 38, 0.62)
+    );
+}
+
+.input-wrapper input:hover:not(:disabled) {
+  border-color:
+    rgba(129, 140, 248, 0.42);
+}
+
+.input-wrapper input:focus {
+  border-color:
+    rgba(129, 140, 248, 0.75);
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.1),
+    0 0 28px rgba(124, 58, 237, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.input-wrapper:focus-within
+.input-wrapper__icon {
+  color: #a5b4fc;
+}
+
+/* Professional security CTA */
+
+.login-button {
+  border-color:
+    rgba(165, 180, 252, 0.22);
+
+  background:
+    linear-gradient(
+      110deg,
+      #0284c7 0%,
+      #4f46e5 44%,
+      #6d28d9 72%,
+      #7e22ce 100%
+    );
+
+  background-size: 180% 180%;
+
+  box-shadow:
+    0 12px 32px rgba(79, 70, 229, 0.22),
+    0 0 28px rgba(56, 189, 248, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  animation:
+    security-button-flow
+    9s ease infinite;
+}
+
+@keyframes security-button-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .login-card:hover {
+    transform:
+      translate3d(0, -3px, 0);
+
+    border-color:
+      rgba(167, 139, 250, 0.28);
+
+    box-shadow:
+      0 38px 100px rgba(0, 0, 0, 0.46),
+      0 0 80px rgba(79, 70, 229, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .login-button:hover:not(:disabled) {
+    transform:
+      translateY(-2px);
+
+    box-shadow:
+      0 17px 40px rgba(79, 70, 229, 0.3),
+      0 0 38px rgba(124, 58, 237, 0.1);
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .cyber-background::before {
+    inset: -20%;
+    width: 140%;
+    height: 140%;
+
+    filter: blur(28px);
+
+    animation-duration: 30s;
+  }
+
+  .cyber-background::after {
+    opacity: 0.12;
+    background-size: 56px 56px;
+  }
+
+  .login-card {
+    width: min(100%, 500px);
+
+    backdrop-filter:
+      blur(22px)
+      saturate(125%);
+
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(125%);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .login-page {
+    overflow-x: hidden;
+  }
+
+  .cyber-background::before {
+    inset: -10%;
+
+    width: 120%;
+    height: 120%;
+
+    filter: blur(24px);
+
+    opacity: 0.82;
+
+    animation-duration: 34s;
+  }
+
+  .cyber-background::after {
+    opacity: 0.085;
+
+    background-size:
+      46px 46px;
+  }
+
+  .login-card {
+    border-radius: 18px;
+
+    backdrop-filter:
+      blur(18px)
+      saturate(115%);
+
+    -webkit-backdrop-filter:
+      blur(18px)
+      saturate(115%);
+  }
+
+  .login-button {
+    animation-duration: 12s;
+  }
+
+  .cyber-orbit--two {
+    display: none;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+  .cyber-background::after {
+    opacity: 0.065;
+    background-size: 40px 40px;
+  }
+
+  .login-card {
+    border-radius: 16px;
+  }
+}
+
+/* Short mobile screens */
+
+@media (max-width: 600px) and (max-height: 700px) {
+  .cyber-scan-line {
+    display: none;
+  }
+
+  .cyber-background::before {
+    opacity: 0.65;
+  }
+
+  .login-card {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+}
+
+/* Accessibility + low-power preference */
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-background::before,
+  .login-card::before,
+  .login-button {
+    animation: none !important;
+  }
+
+  .login-card,
+  .login-button {
+    transition: none !important;
+  }
+}
+/* =========================================================
+   CYBERSECURITY LOGIN — FINAL MOTION ENHANCEMENTS
+   Scanner • Hexagons • Threat Radar • Input Glow • Counter
+========================================================= */
+
+/* ---------------------------------------------------------
+   Scanner enhancement
+--------------------------------------------------------- */
+
+.cyber-scan-line {
+  z-index: 3;
+
+  height: 110px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(56, 189, 248, 0.008) 30%,
+      rgba(99, 102, 241, 0.035) 60%,
+      rgba(139, 92, 246, 0.07) 82%,
+      rgba(236, 72, 153, 0.025) 94%,
+      transparent 100%
+    );
+
+  border-bottom:
+    1px solid
+    rgba(129, 140, 248, 0.2);
+
+  box-shadow:
+    0 8px 28px rgba(56, 189, 248, 0.025),
+    0 12px 45px rgba(139, 92, 246, 0.025);
+
+  will-change: top, opacity;
+}
+
+/* ---------------------------------------------------------
+   Decorative hexagons
+--------------------------------------------------------- */
+
+.cyber-hex-field {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.cyber-hex {
+  position: absolute;
+
+  fill: rgba(99, 102, 241, 0.012);
+
+  color: rgba(139, 92, 246, 0.15);
+
+  stroke-width: 0.7;
+
+  filter:
+    drop-shadow(
+      0 0 10px
+      rgba(99, 102, 241, 0.08)
+    );
+
+  animation:
+    cyber-hex-float
+    12s ease-in-out infinite;
+}
+
+.cyber-hex--1 {
+  top: 13%;
+  left: 7%;
+
+  width: 52px;
+  height: 52px;
+}
+
+.cyber-hex--2 {
+  top: 27%;
+  left: 54%;
+
+  width: 31px;
+  height: 31px;
+
+  opacity: 0.6;
+
+  animation-delay: -3s;
+}
+
+.cyber-hex--3 {
+  left: 18%;
+  bottom: 17%;
+
+  width: 42px;
+  height: 42px;
+
+  color: rgba(56, 189, 248, 0.13);
+
+  animation-delay: -6s;
+}
+
+.cyber-hex--4 {
+  top: 16%;
+  right: 8%;
+
+  width: 62px;
+  height: 62px;
+
+  opacity: 0.42;
+
+  color: rgba(236, 72, 153, 0.11);
+
+  animation-delay: -8s;
+}
+
+.cyber-hex--5 {
+  right: 15%;
+  bottom: 15%;
+
+  width: 35px;
+  height: 35px;
+
+  opacity: 0.5;
+
+  animation-delay: -4s;
+}
+
+@keyframes cyber-hex-float {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+
+    opacity: 0.35;
+  }
+
+  50% {
+    transform:
+      translate3d(0, -12px, 0)
+      rotate(12deg);
+
+    opacity: 0.75;
+  }
+}
+
+/* ---------------------------------------------------------
+   Threat detection radar
+--------------------------------------------------------- */
+
+.threat-radar {
+  position: absolute;
+  z-index: 3;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.18);
+
+  border-radius: 50%;
+
+  color: #a78bfa;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.11),
+      rgba(15, 23, 42, 0.03) 55%,
+      transparent 72%
+    );
+
+  box-shadow:
+    inset 0 0 18px rgba(99, 102, 241, 0.06),
+    0 0 25px rgba(139, 92, 246, 0.05);
+
+  pointer-events: none;
+}
+
+.threat-radar > svg {
+  position: relative;
+  z-index: 3;
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      rgba(167, 139, 250, 0.45)
+    );
+}
+
+.threat-radar > span {
+  position: absolute;
+  inset: 0;
+
+  border:
+    1px solid
+    rgba(129, 140, 248, 0.3);
+
+  border-radius: 50%;
+
+  opacity: 0;
+
+  animation:
+    threat-ring-pulse
+    3.6s ease-out infinite;
+}
+
+.threat-radar > span:nth-child(2) {
+  animation-delay: 1.2s;
+}
+
+.threat-radar > span:nth-child(3) {
+  animation-delay: 2.4s;
+}
+
+.threat-radar--one {
+  top: 42%;
+  left: 8%;
+}
+
+.threat-radar--two {
+  right: 8%;
+  bottom: 20%;
+
+  width: 38px;
+  height: 38px;
+
+  opacity: 0.7;
+}
+
+@keyframes threat-ring-pulse {
+  0% {
+    opacity: 0.65;
+
+    transform:
+      scale(0.7);
+  }
+
+  75%,
+  100% {
+    opacity: 0;
+
+    transform:
+      scale(2.4);
+  }
+}
+
+/* ---------------------------------------------------------
+   Stronger AI input glow
+--------------------------------------------------------- */
+
+.input-wrapper {
+  isolation: isolate;
+}
+
+.input-wrapper::before {
+  content: "";
+
+  position: absolute;
+  inset: -1px;
+
+  z-index: -1;
+
+  border-radius: 13px;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      110deg,
+      rgba(56, 189, 248, 0.3),
+      rgba(99, 102, 241, 0.38),
+      rgba(139, 92, 246, 0.3)
+    );
+
+  filter: blur(8px);
+
+  transition:
+    opacity 220ms ease;
+}
+
+.input-wrapper:focus-within::before {
+  opacity: 0.32;
+}
+
+.input-wrapper input:focus {
+  border-color:
+    rgba(129, 140, 248, 0.88);
+
+  box-shadow:
+    0 0 0 3px
+      rgba(99, 102, 241, 0.11),
+    0 0 22px
+      rgba(56, 189, 248, 0.055),
+    0 0 34px
+      rgba(139, 92, 246, 0.065),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.04);
+}
+
+/* ---------------------------------------------------------
+   Live threat counter
+--------------------------------------------------------- */
+
+.threat-counter {
+  position: relative;
+
+  width: min(100%, 390px);
+
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 0.8rem;
+
+  margin-bottom: 0.85rem;
+
+  padding:
+    0.7rem
+    0.85rem;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(129, 140, 248, 0.13);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(15, 23, 42, 0.5),
+      rgba(30, 27, 75, 0.2),
+      rgba(15, 23, 42, 0.32)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.035),
+    0 10px 35px
+      rgba(2, 6, 23, 0.18);
+
+  backdrop-filter:
+    blur(16px)
+    saturate(120%);
+
+  -webkit-backdrop-filter:
+    blur(16px)
+    saturate(120%);
+}
+
+.threat-counter::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 15%;
+
+  width: 70%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(56, 189, 248, 0.45),
+      rgba(139, 92, 246, 0.45),
+      transparent
+    );
+}
+
+.threat-counter__icon {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(139, 92, 246, 0.2);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(56, 189, 248, 0.1),
+      rgba(139, 92, 246, 0.1)
+    );
+
+  color: #a5b4fc;
+
+  box-shadow:
+    0 0 18px
+    rgba(99, 102, 241, 0.07);
+}
+
+.threat-counter__content {
+  min-width: 0;
+}
+
+.threat-counter__label {
+  display: block;
+
+  margin-bottom: 0.18rem;
+
+  color: #818cf8;
+
+  font-size: 0.5rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+}
+
+.threat-counter__value {
+  display: flex;
+  align-items: baseline;
+
+  gap: 0.45rem;
+
+  min-width: 0;
+}
+
+.threat-counter__value strong {
+  color: #f8fafc;
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.threat-counter__value > span {
+  min-width: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.67rem;
+
+  white-space: nowrap;
+}
+
+.threat-counter__live {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.3rem;
+
+  color: #6ee7b7;
+
+  font-size: 0.48rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+.threat-counter__live > span {
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 5px;
+
+  border-radius: 50%;
+
+  background: #10b981;
+
+  box-shadow:
+    0 0 8px
+    rgba(16, 185, 129, 0.8);
+
+  animation:
+    threat-live-pulse
+    2s ease-in-out infinite;
+}
+
+@keyframes threat-live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+
+/* ---------------------------------------------------------
+   Tablet
+--------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .threat-radar--one {
+    top: 16%;
+    left: 7%;
+  }
+
+  .threat-radar--two {
+    right: 8%;
+    bottom: 12%;
+  }
+
+  .cyber-hex--2,
+  .cyber-hex--4 {
+    display: none;
+  }
+
+  /*
+   * Desktop hero is hidden at this breakpoint,
+   * therefore its threat counter is intentionally hidden too.
+   */
+  .threat-counter {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Mobile
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .cyber-scan-line {
+    height: 75px;
+
+    animation-duration: 12s;
+  }
+
+  .threat-radar {
+    transform: scale(0.8);
+  }
+
+  .threat-radar--one {
+    top: 13%;
+    left: 5%;
+  }
+
+  .threat-radar--two {
+    right: 5%;
+    bottom: 10%;
+  }
+
+  .cyber-hex {
+    opacity: 0.45;
+  }
+
+  .cyber-hex--3 {
+    left: 5%;
+    bottom: 20%;
+  }
+
+  .cyber-hex--5 {
+    right: 5%;
+    bottom: 25%;
+  }
+
+  .input-wrapper:focus-within::before {
+    opacity: 0.22;
+  }
+}
+
+/* ---------------------------------------------------------
+   Small phones
+--------------------------------------------------------- */
+
+@media (max-width: 380px) {
+  .threat-radar--two,
+  .cyber-hex--5 {
+    display: none;
+  }
+
+  .threat-radar--one {
+    transform:
+      scale(0.68);
+  }
+
+  .cyber-hex--1,
+  .cyber-hex--3 {
+    transform:
+      scale(0.8);
+  }
+}
+
+/* ---------------------------------------------------------
+   Short-height devices
+--------------------------------------------------------- */
+
+@media (max-height: 700px) {
+  .threat-radar--two,
+  .cyber-hex--4,
+  .cyber-hex--5 {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------
+   Reduced motion accessibility
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-scan-line,
+  .cyber-hex,
+  .threat-radar > span,
+  .threat-counter__live > span {
+    animation: none !important;
+  }
+
+  .threat-radar > span {
+    opacity: 0.16;
+    transform: scale(1.25);
+  }
+}
