@@ -1,3 +1,4 @@
+from accounts.models import UserRole
 from django.contrib.auth import get_user_model
 from incidents.models import Incident, IncidentSeverity, IncidentStatus
 
@@ -93,7 +94,8 @@ class DashboardSelector:
         # ---------------------------------------------------------
 
         active_analysts = User.objects.filter(
-            is_active=True
+            is_active=True,
+            role="SOC_ANALYST",
         ).count()
 
         # ---------------------------------------------------------

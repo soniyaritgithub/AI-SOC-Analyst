@@ -16,8 +16,15 @@ class DashboardService:
 
         statistics = DashboardSelector.get_statistics()
 
-        recent_incidents = statistics.get("recent_incidents", [])
-        latest_alerts = statistics.get("latest_alerts", [])
+        recent_incidents = statistics.get(
+            "recent_incidents",
+            [],
+        )
+
+        latest_alerts = statistics.get(
+            "latest_alerts",
+            [],
+        )
 
         statistics["recent_incidents"] = [
             {
@@ -44,6 +51,14 @@ class DashboardService:
         return statistics
 
     @classmethod
+    def get_dashboard(cls):
+        """
+        Backward-compatible dashboard accessor.
+        """
+
+        return cls.get_dashboard_data()
+
+    @classmethod
     def broadcast_dashboard(cls):
         """
         Broadcast the latest dashboard data through WebSocket.
@@ -51,6 +66,8 @@ class DashboardService:
 
         data = cls.get_dashboard_data()
 
-        WebSocketService.send_dashboard_update(data)
+        WebSocketService.send_dashboard_update(
+            data,
+        )
 
         return data

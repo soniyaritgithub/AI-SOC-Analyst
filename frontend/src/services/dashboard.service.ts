@@ -5,7 +5,7 @@ import type {
 } from "../types/dashboard";
 
 const DASHBOARD_ENDPOINT =
-  "/api/incidents/dashboard/";
+  "/api/dashboard/";
 
 export const dashboardService = {
   async getDashboard(): Promise<DashboardSummary> {

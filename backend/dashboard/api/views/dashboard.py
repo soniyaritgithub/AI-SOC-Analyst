@@ -1,45 +1,26 @@
-from accounts.api.permissions import IsAdminOrManager
-from dashboard.selectors import DashboardSelector
-from drf_spectacular.utils import (OpenApiResponse, extend_schema,
-                                   inline_serializer)
-from rest_framework import serializers, status
+from dashboard.api.serializers import DashboardSerializer
+from dashboard.services.dashboard_service import DashboardService
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-@extend_schema(
-    tags=["Dashboard"],
-    responses={
-        200: OpenApiResponse(
-            response=inline_serializer(
-                name="DashboardResponse",
-                fields={
-                    "role": serializers.CharField(),
-                    "dashboard": serializers.DictField(),
-                },
-            ),
-            description="Dashboard statistics retrieved successfully.",
-        ),
-    },
-)
 class DashboardAPIView(APIView):
     """
-    Dashboard statistics API.
+    Authenticated SOC dashboard API.
     """
 
     permission_classes = [
         IsAuthenticated,
-        IsAdminOrManager,
     ]
 
     def get(self, request):
-        statistics = DashboardSelector.get_statistics()
+        data = DashboardService.get_dashboard_data()
+
+        serializer = DashboardSerializer(
+            instance=data,
+        )
 
         return Response(
-            {
-                "role": request.user.role,
-                "dashboard": statistics,
-            },
-            status=status.HTTP_200_OK,
+            serializer.data,
         )
